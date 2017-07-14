@@ -6,3 +6,25 @@
 ::selection {
   background: transparent;
 }
+
+/* LAYOUT */
+a { text-decoration: none;}
+
+/* Simple inline menu */
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  padding-right: 1em;
+}
+
+nav ul li a.active {
+  font-weight: bold;
+}
+
+nav ul li a {
+  text-decoration: none;
+}

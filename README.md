@@ -48,9 +48,38 @@ $ git commit -m "Initial commit"
 ## Webpack
 Edit vim webpack.config.js
 
-## React & Redux
+## React & Redux & React Router 4
+Add npm packages for React, Redux and React Router
 
-## React Router 4
+Add directories and files
+
+  * src/js/
+    * configure_store.js
+    * index.js
+    * main.js
+    * routes.js
+
+  * src/js/actions/
+    * action_types.js
+    * application_actions.js
+    
+  * src/js/components/
+    * common/
+      * loading_dots.jsx
+    * about_page.jsx
+    * app.jsx
+    * home_page.jsx
+    * nav_bar.jsx
+    * no_match_page.jsx
+    * root.jsx
+
+  * src/js/reducers/
+    * application/
+      * bootup_time_reducer.js
+      * is_loading_reducer.js
+    * application_reducer.js
+    * index.js
+
 
 ## Npm scripts
 They are described inside package.json.
