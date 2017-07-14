@@ -1,0 +1,11 @@
+{
+  "name": "videoinfo",
+  "version": "1.0.0",
+  "description": "video info",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+  },
+  "author": "koko.le.gorille",
+  "license": "ISC"
+}
