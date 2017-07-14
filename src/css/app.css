@@ -1,7 +1,8 @@
 /* 
+  https://github.com/electron/electron/issues/4420
   Electron FIX :
   Electron Helper[18713:10987691] Couldn't set selectedTextBackgroundColor from default ()
 */
 ::selection {
-  background: #5BD4ED;
+  background: transparent;
 }
