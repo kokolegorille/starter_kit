@@ -1,5 +1,5 @@
 // Electron starter point
-import electron, {app, BrowserWindow} from 'electron';
+import electron, {app, BrowserWindow, ipcMain} from 'electron';
 import path from 'path';
 
 // Must be defined in the main process!
@@ -40,3 +40,8 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+// IPC
+ipcMain.on('system:ping', 
+  () => mainWindow.webContents.send('system:pong', null)
+);
