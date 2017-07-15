@@ -15,9 +15,9 @@ const configureStore = (routerMiddleware) => {
   // Comment for PROD  
   middlewares.push(createLogger());
   
-  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  // composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   
-  // composeEnhancers = compose;
+  composeEnhancers = compose;
     
   const store = createStore(
     reduxApp,

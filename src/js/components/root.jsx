@@ -10,9 +10,6 @@ import { Redirect, BrowserRouter as Router } from 'react-router-dom';
 import { createHashHistory } from 'history';
 const history = createHashHistory();
 
-// import { createBrowserHistory } from 'history';
-// const history = createBrowserHistory();
-
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-redux
 // http://stackoverflow.com/questions/35706835/react-router-redirect-after-action-redux
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';

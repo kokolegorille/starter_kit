@@ -18,7 +18,7 @@ class App extends Component {
   }
   
   renderSpinner() {
-    // Network access is really very fast! and the spinner might just blink.
+    // Communication is really very fast! and the spinner might just blink.
     if (!this.props.isLoading) return;
     return <LoadingDots interval={100} dots={20} />
   }

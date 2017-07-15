@@ -18,7 +18,7 @@ const createWindow = () => {
     mainWindow.show();
   });
 
-  mainWindow.on('close', () => {
+  mainWindow.on('closed', () => {
     mainWindow = null;
   });
 }
@@ -26,16 +26,16 @@ const createWindow = () => {
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
-  // Respect the OSX convention of having the application in memory even
-  // after all windows have been closed
+  // Respect the OSX convention of having the application in memory 
+  // even after all windows have been closed
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
 app.on('activate', () => {
-  // re-create the mainWindow if the dock icon is clicked in OS X and no other
-  // windows were open
+  // re-create the mainWindow if the dock icon is clicked in OS X 
+  // and no other windows were open
   if (! mainWindow) {
     createWindow();
   }
