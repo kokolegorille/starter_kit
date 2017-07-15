@@ -10,3 +10,9 @@ export const appBootup = (bootupTime) => {
     sendDispatch(dispatch, types.APP_BOOTUP, bootupTime);    
   });
 };
+
+export const sendPing = () => {
+  return (dispatch => {
+    sendDispatch(dispatch, types.SEND_PING, null);    
+  });
+};

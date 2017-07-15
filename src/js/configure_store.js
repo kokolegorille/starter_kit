@@ -3,11 +3,12 @@ import reduxThunk from 'redux-thunk';
 import {createLogger} from 'redux-logger';
 
 import reduxApp from './reducers';
-// import socketMiddleware from './middlewares/socket_middleware';
+import ipcMiddleware from './middlewares/ipc_middleware';
+// import urlChangerMiddleware from './middlewares/url_changer_middleware';
 
 const configureStore = (routerMiddleware) => {
-  // const middlewares = [routerMiddleware, reduxThunk, socketMiddleware, urlChangerMiddleware];
-  const middlewares = [routerMiddleware, reduxThunk];
+  // const middlewares = [routerMiddleware, reduxThunk, ipcMiddleware, urlChangerMiddleware];
+  const middlewares = [routerMiddleware, reduxThunk, ipcMiddleware];
   
   let composeEnhancers;
   

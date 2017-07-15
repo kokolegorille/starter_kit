@@ -5,12 +5,16 @@ import { bindActionCreators } from 'redux';
 import NavBar from './nav_bar';
 
 import LoadingDots from './common/loading_dots';
-import { appBootup } from '../actions/application_actions';
+import { 
+  appBootup, 
+  sendPing 
+} from '../actions/application_actions';
 
 class App extends Component {
   componentWillMount() {
     // Application is starting...
     this.props.appBootup(Date.now());
+    this.props.sendPing();
   }
   
   renderSpinner() {
@@ -45,6 +49,7 @@ class App extends Component {
 
 App.propTypes = {
   appBootup: PropTypes.func.isRequired,
+  sendPing: PropTypes.func.isRequired,
   isLoading: PropTypes.bool
 }
 
@@ -56,7 +61,8 @@ const mapStateToProps = ({application}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    appBootup
+    appBootup,
+    sendPing
   }, dispatch)
 }
 
