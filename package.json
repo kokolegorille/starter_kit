@@ -1,7 +1,7 @@
 {
-  "name": "videoinfo",
+  "name": "starter_kit",
   "version": "1.0.0",
-  "description": "video info",
+  "description": "electron starter kit",
   "main": "build/main.js",
   "scripts": {
     "start": "./node_modules/.bin/electron .",
