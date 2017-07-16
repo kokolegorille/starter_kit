@@ -2,7 +2,7 @@
 
 Starter Kit for Electron
 
-## 
+## Create project
 $ mkdir starter_kit
 $ cd starter_kit
 
@@ -91,3 +91,62 @@ To test, open 2 shell
 To build application
   
   * $ npm run pack
+  
+## Persists data with sqlite3 and knex
+That is quite complicated...
+
+  * You need to build sqlite3 for each platform
+  * You need to exclude knex from webpack because of incompatibility
+
+### Update package.json with scripts, dep, dev_dep...
+
+    "rebuild": "electron-rebuild -f -w sqlite3"
+    "knex": "^0.13.0",
+    "electron-rebuild": "^1.5.11",
+    
+### Install and rebuild sqlite3
+
+$ npm install
+$ npm run rebuild
+
+### Update webpack.config.js by adding knex (and electron) to the externals section
+Adding knex related stuff inside main.js, and process it with webpack will give a bunch of errors...
+See: 
+https://github.com/tgriesser/knex/issues/1128
+https://github.com/tgriesser/knex/issues/1518
+
+Using Electron with webpack also cause errors
+See:
+https://stackoverflow.com/questions/34427446/bundle-error-using-webpack-for-electron-application-cannot-resolve-module-elec
+
+  externals: [
+    (() => {
+      var IGNORES = [
+        'electron',
+        'knex'
+      ];
+      return (context, request, callback) => {
+        if (IGNORES.indexOf(request) >= 0) {
+          return callback(null, "require('" + request + "')");
+        }
+        return callback();
+      };
+    })()
+  ]
+  
+### Sample example to put in main.js
+
+  var knex = require('knex')({
+    client: "sqlite3",
+    connection: {
+      filename: "./build/database.sqlite3"
+    },
+    useNullAsDefault: true
+  });
+
+  let result = knex.select("one").from("tbl1");
+  result.then(
+    rows => console.log(rows)
+  );
+  
+Note : db filename is related to project root, not build path!

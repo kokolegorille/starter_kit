@@ -8,12 +8,14 @@
     "build:dev": "webpack --progress --colors --watch",
     "build:prod": "webpack --progress --colors -p --watch",
     "lint": "eslint src",
-    "pack": "electron-packager . 'Electron starter kit' --out ~/Desktop/ElectronSK --overwrite"
+    "pack": "electron-packager . 'Electron starter kit' --out ~/Desktop/ElectronSK --overwrite",
+    "rebuild": "electron-rebuild -f -w sqlite3"
   },
   "author": "koko.le.gorille",
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.16.0",
+    "knex": "^0.13.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.3",
@@ -22,7 +24,8 @@
     "redux": "^3.6.0",
     "redux-form": "^7.0.0",
     "redux-logger": "^3.0.1",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "sqlite3": "^3.1.8"
   },
   "devDependencies": {
     "babel-core": "^6.20.0",
@@ -36,6 +39,7 @@
     "devtron": "^1.4.0",
     "electron": "^1.7.4",
     "electron-packager": "^8.7.0",
+    "electron-rebuild": "^1.5.11",
     "eslint": "^4.2.0",
     "eslint-plugin-react": "^7.1.0",
     "extract-text-webpack-plugin": "^3.0.0",

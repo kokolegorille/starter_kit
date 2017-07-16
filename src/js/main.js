@@ -5,6 +5,15 @@ import path from 'path';
 // Must be defined in the main process!
 let mainWindow;
 
+// SQLite and knex
+let knex = require('knex')({
+  client: "sqlite3",
+  connection: {
+    filename: "./build/database.sqlite3"
+  },
+  useNullAsDefault: true
+});
+
 const createWindow = () => {
   mainWindow = new BrowserWindow({
     show: false,
@@ -21,6 +30,12 @@ const createWindow = () => {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+  
+  // Sample knex usage
+  let result = knex.select("one").from("tbl1");
+  result.then(
+    rows => console.log(rows)
+  );
 }
 
 app.on('ready', createWindow);
