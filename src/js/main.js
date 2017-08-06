@@ -2,17 +2,10 @@
 import electron, {app, BrowserWindow, ipcMain} from 'electron';
 import path from 'path';
 
+import db from './init_db';
+
 // Must be defined in the main process!
 let mainWindow;
-
-// SQLite and knex
-let knex = require('knex')({
-  client: "sqlite3",
-  connection: {
-    filename: "./build/database.sqlite3"
-  },
-  useNullAsDefault: true
-});
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
@@ -30,12 +23,6 @@ const createWindow = () => {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
-  
-  // Sample knex usage
-  let result = knex.select("one").from("tbl1");
-  result.then(
-    rows => console.log(rows)
-  );
 }
 
 app.on('ready', createWindow);
@@ -58,5 +45,10 @@ app.on('activate', () => {
 
 // IPC callbacks
 ipcMain.on('system:ping', 
-  () => mainWindow.webContents.send('system:pong', null)
+  () => {
+    let result = db.select("last_name").from("players");
+    result.then(
+      rows => mainWindow.webContents.send('system:pong', rows)
+    );
+  }
 );

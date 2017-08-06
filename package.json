@@ -7,6 +7,8 @@
     "start": "./node_modules/.bin/electron .",
     "build:dev": "webpack --progress --colors --watch",
     "build:prod": "webpack --progress --colors -p --watch",
+    "build:db": "sqlite3 ./build/db.sqlite3 < ./src/schema/schema.dump",
+    "build:sample_data": "sqlite3 ./build/db.sqlite3 < ./src/schema/sample_data.dump",
     "lint": "eslint src",
     "pack": "electron-packager . 'Electron starter kit' --out ~/Desktop/ElectronSK --overwrite",
     "rebuild": "electron-rebuild -f -w sqlite3"
@@ -15,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.16.0",
+    "bookshelf": "^0.10.3",
     "knex": "^0.13.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",

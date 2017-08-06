@@ -4,7 +4,7 @@ import * as types from '../actions/action_types';
 
 // IPC callbacks
 ipcRenderer.on('system:pong', 
-  () => console.log("got PONG!")
+  (event, rows) => console.log("got PONG!", rows)
 );
 
 const ipcMiddleware = store => {

@@ -73,6 +73,7 @@ module.exports = {
     (() => {
       var IGNORES = [
         'electron',
+        'bookshelf',
         'knex'
       ];
       return (context, request, callback) => {

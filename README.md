@@ -104,12 +104,20 @@ That is quite complicated...
     "knex": "^0.13.0",
     "electron-rebuild": "^1.5.11",
     
-### Install and rebuild sqlite3
+### Sqlite3
 
 $ npm install
-$ npm run rebuild
 
-### Update webpack.config.js by adding knex (and electron) to the externals section
+To rebuild sqlite3 for electron
+  $ npm run rebuild
+
+To install database
+  $ npm run build:db
+
+To install sample_data
+  $ npm run build:sample_data
+
+### Update webpack.config.js externals section
 Adding knex related stuff inside main.js, and process it with webpack will give a bunch of errors...
 See: 
 https://github.com/tgriesser/knex/issues/1128
@@ -123,7 +131,8 @@ https://stackoverflow.com/questions/34427446/bundle-error-using-webpack-for-elec
     (() => {
       var IGNORES = [
         'electron',
-        'knex'
+        'knex',
+        'bookshelf'
       ];
       return (context, request, callback) => {
         if (IGNORES.indexOf(request) >= 0) {

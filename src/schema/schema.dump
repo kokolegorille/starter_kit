@@ -1,0 +1,46 @@
+CREATE TABLE IF NOT EXISTS players(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  first_name TEXT, 
+  last_name TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS tournaments(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL, 
+  date TEXT NOT NULL,
+  default_match_size INTEGER DEFAULT 7,
+  has_consolation INTEGER DEFAULT 1,
+  default_consolation_match_size INTEGER DEFAULT 7
+);
+
+CREATE TABLE IF NOT EXISTS players_tournaments(
+  player_id INTEGER NOT NULL,
+  tournament_id INTEGER NOT NULL,
+  PRIMARY KEY (player_id, tournament_id),
+  FOREIGN KEY(player_id) REFERENCES players(id),
+  FOREIGN KEY(tournament_id) REFERENCES tournaments(id)
+);
+
+CREATE TABLE IF NOT EXISTS rankings(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  player_id INTEGER NOT NULL,
+  elo INTEGER NOT NULL,
+  experience INTEGER NOT NULL,
+  date TEXT NOT NULL,
+  FOREIGN KEY(player_id) REFERENCES players(id)
+);
+
+CREATE TABLE IF NOT EXISTS matches(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  player_1_id INTEGER,
+  player_2_id INTEGER,
+  tournament_id INTEGER NOT NULL,
+  type TEXT NOT NULL DEFAULT "main",
+  round INTEGER NOT NULL,
+  position INTEGER NOT NULL,
+  match_size INTEGER,
+  result INTEGER,
+  FOREIGN KEY(player_1_id) REFERENCES players(id),
+  FOREIGN KEY(player_2_id) REFERENCES players(id),
+  FOREIGN KEY(tournament_id) REFERENCES tournaments(id)
+);
